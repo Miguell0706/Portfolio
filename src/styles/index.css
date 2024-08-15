@@ -1,0 +1,89 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bronze: #cd7f32;
+  --silver: #c0c0c0;
+  --gold: #ffd700;
+  --platinum: #e5e4e2;
+  --diamond: #e0ffff;
+  --maroon: #800000;
+  --black: #111;
+  --white: #f8f8f8;
+  --emerald: #50c878;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+@font-face {
+  font-family: "Trajan Pro Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Trajan Pro Regular"),
+    url("/fonts/TrajanPro-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Trajan Pro Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: local("Trajan Pro Bold"),
+    url("/fonts/TrajanPro-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Cinzel-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Cinzel-Regular"), url("/fonts/Cinzel-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Cinzel-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Cinzel-Bold"), url("/fonts/Cinzel-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Cinzel-Black";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Cinzel-Black"), url("/fonts/Cinzel-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Cinzel Decorative-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Cinzel Decorative-Regular"),
+    url("fonts/CinzelDecorative-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Cinzel Decorative-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Cinzel Decorative-Bold"),
+    url("fonts/CinzelDecorative-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Cinzel Decorative-Black";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Cinzel Decorative-Black"),
+    url("fonts/CinzelDecorative-Black.woff") format("woff");
+}
+/*Also using  Garamond font*/
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: "Cinzel-Regular", serif;
+  font-size: 20px;
+}
