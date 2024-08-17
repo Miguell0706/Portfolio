@@ -81,9 +81,83 @@
     url("fonts/CinzelDecorative-Black.woff") format("woff");
 }
 /*Also using  Garamond font*/
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: var(--black);
   color: var(--white);
-  font-family: "Cinzel-Regular", serif;
-  font-size: 20px;
+  font-family: "trajan pro regular", serif;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+}
+.cursor {
+  position:absolute;
+  z-index: 999;
+  background: var(--diamond);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 20px var(--diamond), 0 0 40px var(--diamond),
+    0 0 60px var(--diamond), 0 0 80px var(--diamond), 0 0 100px var(--diamond);
+  animation: colors 5s infinite alternate;
+}
+@keyframes colors{
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+.cursor:before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: var(--diamond);
+  border-radius: 50%;
+  opacity: 0.2;
+  mix-blend-mode: difference;
+  transform: translate(-30%, -30%);
+}
+.trail-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(-1%, -1%);
+  pointer-events: none;
+  z-index: 9998; /* Just below the main cursor */
+}
+
+.trail {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity 0.5s ease-out; /* Smooth fading out */
+  box-shadow: 0 0 5px 7px rgba(255, 255, 255, 0.2); /* Adds a blur effect */
+  opacity: 1;
+}
+.ring {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  transform: scale(1);
+  transform-origin: center; /* Ensure expansion happens from the center */
+  opacity: 1;
 }
