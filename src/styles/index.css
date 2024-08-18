@@ -84,6 +84,9 @@
 html {
   scroll-behavior: smooth;
 }
+* {
+  cursor: none;
+}
 body {
   background-color: var(--black);
   color: var(--white);
@@ -93,37 +96,46 @@ body {
   justify-content: center;
   align-items: center;
   position:relative;
+  
 }
 .cursor {
-  position:absolute;
+  position: absolute;
   z-index: 999;
-  background: var(--diamond);
+  background-color: rgba(255, 255, 255, .7);
   width: 20px;
   height: 20px;
   border-radius: 50%;
   pointer-events: none;
-  box-shadow: 0 0 20px var(--diamond), 0 0 40px var(--diamond),
-    0 0 60px var(--diamond), 0 0 80px var(--diamond), 0 0 100px var(--diamond);
-  animation: colors 5s infinite alternate;
+  box-shadow: 0px 0px 30px 15px var(--diamond),
+              0px 0px 30px -15px var(--diamond);
+  animation: pulse 3s infinite;
 }
-@keyframes colors{
+
+@keyframes pulse {
   0% {
-    filter: hue-rotate(0deg);
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.2;
   }
   100% {
-    filter: hue-rotate(360deg);
+    transform: scale(1);
+    opacity: 0.4;
   }
 }
+
 .cursor:before {
   content: "";
   position: absolute;
   width: 50px;
   height: 50px;
-  background: var(--diamond);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 50%;
   opacity: 0.2;
-  mix-blend-mode: difference;
-  transform: translate(-30%, -30%);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
 }
 .trail-container {
   position: fixed;
@@ -145,8 +157,9 @@ body {
   pointer-events: none;
   mix-blend-mode: screen;
   transition: opacity 0.5s ease-out; /* Smooth fading out */
-  box-shadow: 0 0 5px 7px rgba(255, 255, 255, 0.2); /* Adds a blur effect */
-  opacity: 1;
+  box-shadow: 0 0 5px 7px rgba(255, 255, 255, 0.2),
+    0 0 5px -7px rgba(255, 255, 255, 0.2); /* Adds a blur effect */
+  opacity: .4;
 }
 .ring {
   position: absolute;
