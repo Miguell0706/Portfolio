@@ -1,0 +1,72 @@
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width:100%;
+}
+.nav-container a {
+    text-decoration: none;
+    color: var(--bronze);
+    font-family: 'trajan pro bold', serif;
+    margin: 20px;
+    font-size:24px;
+    letter-spacing: -1px;
+}
+.nav-container a:hover {
+    filter:brightness(1.4);
+}
+.nav-container a:active{
+    color:var(--gold)
+}
+
+@media screen and (min-width: 768px) {
+    .nav-container {
+        position: absolute;
+        left: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 100vh;
+        perspective: 1000px; /* Sets the perspective depth */
+        perspective-origin: 50% 50%; /* Center of perspective */
+    }
+    
+    .nav-container a {
+        font-size: 36px;
+        position: relative;
+        margin-block:25px;
+        transform: rotateX(20deg) rotateY(30deg) rotateZ(-10deg); /* Apply 3D rotation */
+        transform-origin: 50% 50% 0; /* Center point for rotation */
+        transition: transform 0.2s ease-in-out; /* Smooth transition on hover or interaction */
+        text-shadow: 
+            -2px 2px 4px rgba(0, 0, 0, 0.8), /* Basic shadow */
+            -3px 2px 8px rgba(255, 255, 255, 0.3),
+            -4px 2px 2px rgba(255, 255, 255, 0.2),
+            -5px 2px 2px rgba(255, 255, 255, 0.1); /* Light shadow for 3D effect */
+    }
+
+    .nav-container a::before {
+        content: "";
+        position: absolute;
+        width: 126%;
+        height: 3px; /* Adjust the height of the line */
+        background-color: var(--silver); /* Adjust the line color */
+        top: 50%;
+        left: -250%; /* Start off-screen */
+        box-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.8), /* Shadow for 3D effect */
+            1px 1px 2px rgba(255, 255, 255, 0.3); /* Light shadow for depth */
+        transition: transform 0.2s ease-in-out; /* Smooth transition */
+    }
+
+    .nav-container a:hover::before {
+        transform: translateX(100%); /* Move the line into view */
+    }
+    .nav-container a:hover {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); /* Flatten rotation on hover */
+    }
+}

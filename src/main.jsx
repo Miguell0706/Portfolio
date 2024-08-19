@@ -1,16 +1,15 @@
 import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles/index.css';
-import './styles/nav.css';
-import './styles/hero.css';
 import './styles/about.css';
 import './styles/projects.css';
 import './styles/contact.css';
-import Hero from './Hero';
+import './styles/nav.css';
 import About from './About';
 import Projects from './Projects';
 import Contact from './Contact';
 import Nav from './Nav';
+import Starfield from './Starfield';
 
 function App() {
   useEffect(() => {
@@ -93,9 +92,9 @@ function App() {
 
   return (
     <>
+      <Starfield />
       <div className="cursor"></div>
       <Nav />
-      <Hero />
       <About />
       <Projects />
       <Contact />

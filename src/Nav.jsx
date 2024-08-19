@@ -1,7 +1,9 @@
 function Nav() {
     return (
-      <div>
-        <h1>Nav</h1>
+      <div className='nav-container'>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
     );
   }
