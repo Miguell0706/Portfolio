@@ -1,26 +1,26 @@
-import { StrictMode, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles/index.css';
-import './styles/about.css';
-import './styles/projects.css';
-import './styles/contact.css';
-import './styles/nav.css';
-import About from './About';
-import Projects from './Projects';
-import Contact from './Contact';
-import Nav from './Nav';
-import Starfield from './Starfield';
+import { StrictMode, useEffect } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles/index.css";
+import "./styles/about.css";
+import "./styles/projects.css";
+import "./styles/contact.css";
+import "./styles/nav.css";
+import About from "./About";
+import Projects from "./Projects";
+import Contact from "./Contact";
+import Nav from "./Nav";
+import Starfield from "./Starfield";
 
 function App() {
   useEffect(() => {
-    const cursor = document.querySelector('.cursor');
-    const trailContainer = document.createElement('div');
-    trailContainer.className = 'trail-container';
+    const cursor = document.querySelector(".cursor");
+    const trailContainer = document.createElement("div");
+    trailContainer.className = "trail-container";
     document.body.appendChild(trailContainer);
 
     const createTrail = (x, y) => {
-      const trail = document.createElement('div');
-      trail.className = 'trail';
+      const trail = document.createElement("div");
+      trail.className = "trail";
       trail.style.top = `${y}px`; // No need to adjust for cursor size here
       trail.style.left = `${x}px`; // No need to adjust for cursor size here
       trailContainer.appendChild(trail);
@@ -31,22 +31,21 @@ function App() {
       }, 100); // Delay before starting fade-out
     };
     const createRing = (x, y) => {
-      const ring = document.createElement('div');
-      ring.className = 'ring';
-      
+      const ring = document.createElement("div");
+      ring.className = "ring";
+
       // Assuming the ring is 20px by 20px, adjust by half of its size (10px)
-      ring.style.top = `${y}px`;  // Center vertically
+      ring.style.top = `${y}px`; // Center vertically
       ring.style.left = `${x}px`; // Center horizontally
       if (window.innerWidth < 768) {
-        ring.style.left = `${x-5}px`; // Center horizontally
+        ring.style.left = `${x - 5}px`; // Center horizontally
+      } else if (window.innerWidth > 1024) {
+        ring.style.left = `${x + 7}px`; // Center horizontally
       }
-      else if (window.innerWidth > 1024) {
-        ring.style.left = `${x+7}px`; // Center horizontally
-      };
 
       trailContainer.appendChild(ring);
       setTimeout(() => {
-        ring.style.transform = 'scale(3)'; // Expand the ring
+        ring.style.transform = "scale(3)"; // Expand the ring
         ring.style.opacity = 0; // Fade out the ring
         setTimeout(() => ring.remove(), 600); // Remove the ring after the animation
       }, 0); // Start the animation immediately
@@ -75,17 +74,17 @@ function App() {
       cursor.style.opacity = 1; // Show the cursor when the mouse re-enters
     };
 
-    document.addEventListener('click', handleMouseClick);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener("click", handleMouseClick);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     // Cleanup event listeners on component unmount
     return () => {
-      document.removeEventListener('click', handleMouseClick);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener("click", handleMouseClick);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
       trailContainer.remove();
     };
   }, []);
@@ -102,7 +101,7 @@ function App() {
   );
 }
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
   </StrictMode>
