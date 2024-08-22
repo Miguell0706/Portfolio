@@ -46,26 +46,7 @@ const Starfield = () => {
         ctx.fill();
       });
     };
-    const drawNebula = () => {
-        const nebulaColors = [
-          "rgba(255, 0, 150, 0.2)",
-          "rgba(0, 100, 255, 0.2)",
-          "rgba(255, 255, 0, 0.2)"
-        ];
-  
-        nebulaColors.forEach((color, index) => {
-          ctx.fillStyle = color;
-          ctx.beginPath();
-          ctx.arc(
-            canvas.width / 2 + (index * 100) - 150,
-            canvas.height / 2 + (index * 50) - 100,
-            300 + index * 100,
-            0,
-            Math.PI * 2
-          );
-          ctx.fill();
-        });
-      };
+    
     // Function to update star positions and brightness based on cursor
     const updateStars = () => {
       stars.forEach((star) => {

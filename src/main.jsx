@@ -21,57 +21,58 @@ function App() {
     const createTrail = (x, y) => {
       const trail = document.createElement("div");
       trail.className = "trail";
-      trail.style.top = `${y}px`; // No need to adjust for cursor size here
-      trail.style.left = `${x}px`; // No need to adjust for cursor size here
+      trail.style.top = `${y}px`; 
+      trail.style.left = `${x}px`; 
       trailContainer.appendChild(trail);
 
       setTimeout(() => {
         trail.style.opacity = 0;
-        setTimeout(() => trail.remove(), 500); // Remove after fade-out
-      }, 100); // Delay before starting fade-out
+        setTimeout(() => trail.remove(), 500); 
+      }, 100);
     };
+
     const createRing = (x, y) => {
       const ring = document.createElement("div");
       ring.className = "ring";
+      ring.style.top = `${y}px`; 
+      ring.style.left = `${x}px`; 
 
-      // Assuming the ring is 20px by 20px, adjust by half of its size (10px)
-      ring.style.top = `${y}px`; // Center vertically
-      ring.style.left = `${x}px`; // Center horizontally
       if (window.innerWidth < 768) {
-        ring.style.left = `${x - 5}px`; // Center horizontally
+        ring.style.left = `${x - 5}px`; 
       } else if (window.innerWidth > 1024) {
-        ring.style.left = `${x + 7}px`; // Center horizontally
+        ring.style.left = `${x + 7}px`; 
       }
 
       trailContainer.appendChild(ring);
       setTimeout(() => {
-        ring.style.transform = "scale(3)"; // Expand the ring
-        ring.style.opacity = 0; // Fade out the ring
-        setTimeout(() => ring.remove(), 600); // Remove the ring after the animation
-      }, 0); // Start the animation immediately
+        ring.style.transform = "scale(3)";
+        ring.style.opacity = 0; 
+        setTimeout(() => ring.remove(), 600); 
+      }, 0); 
     };
+
     const handleMouseMove = (e) => {
-      const x = e.pageX - cursor.offsetWidth / 2;
-      const y = e.pageY - cursor.offsetHeight / 2;
+      const x = e.clientX - cursor.offsetWidth / 2;
+      const y = e.clientY - cursor.offsetHeight / 2;
       cursor.style.top = `${y}px`;
       cursor.style.left = `${x}px`;
-      cursor.style.opacity = 1; // Ensure the cursor is visible when moving
+      cursor.style.opacity = 1;
 
-      createTrail(e.pageX, e.pageY); // Pass the raw coordinates to createTrail
+      createTrail(e.clientX, e.clientY);
     };
 
     const handleMouseClick = (e) => {
-      const x = e.pageX;
-      const y = e.pageY;
+      const x = e.clientX;
+      const y = e.clientY;
       createRing(x, y);
     };
 
     const handleMouseLeave = () => {
-      cursor.style.opacity = 0; // Hide the cursor when the mouse leaves
+      cursor.style.opacity = 0;
     };
 
     const handleMouseEnter = () => {
-      cursor.style.opacity = 1; // Show the cursor when the mouse re-enters
+      cursor.style.opacity = 1;
     };
 
     document.addEventListener("click", handleMouseClick);
@@ -79,7 +80,6 @@ function App() {
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
 
-    // Cleanup event listeners on component unmount
     return () => {
       document.removeEventListener("click", handleMouseClick);
       document.removeEventListener("mousemove", handleMouseMove);
