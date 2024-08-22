@@ -1,6 +1,6 @@
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 10px;
     background-color: transparent;
@@ -15,11 +15,21 @@
     font-size:24px;
     letter-spacing: -1px;
 }
+.nav-container a::after {
+    content: "";
+    position: absolute;
+    width: 0; /* Start with no width (hidden) */
+    height: 2px; /* The thickness of the underline */
+    bottom: 0; /* Position the underline at the bottom of the link */
+    left: 0; /* Start from the left */
+    background-color: var(--gold); /* Color of the underline */
+}
 .nav-container a:hover {
     filter:brightness(1.4);
 }
-.nav-container a:active{
-    color:var(--gold)
+.nav-container a:hover::after {
+    width: 100%; /* Expand the underline to full width on hover */
+    transition: width 0.2s ease-in-out;
 }
 
 @media screen and (min-width: 768px) {
@@ -48,7 +58,9 @@
             -4px 2px 2px rgba(255, 255, 255, 0.2),
             -5px 2px 2px rgba(255, 255, 255, 0.1); /* Light shadow for 3D effect */
     }
-
+    .nav-container a::after{
+        display:none;
+    }
     .nav-container a::before {
         content: "";
         position: absolute;

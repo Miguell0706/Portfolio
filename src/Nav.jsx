@@ -11,19 +11,19 @@ function Nav() {
   }, []); // The empty array means this runs once, after the initial render
 
   const openAbout = () => {
-    if (aboutContainer) aboutContainer.style.display = 'block';
+    if (aboutContainer) aboutContainer.style.display = 'flex';
     if (projectsContainer) projectsContainer.style.display = 'none';
     if (contactContainer) contactContainer.style.display = 'none';
   };
 
   const openProjects = () => {
-    if (projectsContainer) projectsContainer.style.display = 'block';
+    if (projectsContainer) projectsContainer.style.display = 'flex';
     if (aboutContainer) aboutContainer.style.display = 'none';
     if (contactContainer) contactContainer.style.display = 'none';
   };
 
   const openContact = () => {
-    if (contactContainer) contactContainer.style.display = 'block';
+    if (contactContainer) contactContainer.style.display = "flex";
     if (projectsContainer) projectsContainer.style.display = 'none';
     if (aboutContainer) aboutContainer.style.display = 'none';
   };
