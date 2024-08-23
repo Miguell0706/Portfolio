@@ -1,57 +1,106 @@
+/* Defining a custom property for the gradient angle */
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* Keyframes for rotating the conic gradient */
+@keyframes rotation {
+    0%   { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
+}
+
+/* Container styles */
 .projects-container,
 .about-container,
 .contact-container {
-    width:100%;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-family: 'cinzel decorative-bold', serif;
-    font-size:1.2rem;
+    font-size: 1.2rem;
     color: var(--gold);
-    text-shadow: -2px 2px 4px rgba(134, 133, 133, 0.8);/* Basic shadow */;
+    text-shadow: -2px 2px 4px rgba(134, 133, 133, 0.8);
     letter-spacing: -1px;
-    
 }
-.projects {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:100%;
 
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     font-family: 'garamond', serif;
 }
+
+/* Project item styles */
 .project {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-top:30px;
-    letter-spacing:0px;
-    border: 2px solid var(--gold);
-    border-radius:2%;
-    width:450px;
-    height:450px;
-    margin-bottom:20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    letter-spacing: 0px;
+    border-radius: 10px;
+    width: 450px;
+    height: 500px;
+    margin-bottom: 20px;
+    color: var(--silver);
+    background: var(--black);
+}
+
+/* Conic gradient effect around the project item */
+.project::after,
+.project::before {
+    content: "";
+    position: absolute;
+    height: 100.5%;
+    width: 100.5%;
+    z-index: -1;
+    inset: 0;
+    padding: 40px;
+    background: conic-gradient(from var(--gradient-angle), var(--emerald) 10%, var(--platinum));
+    border-radius: inherit;
+    filter: blur(0.5rem);
+    animation: rotation 10s infinite linear;
+    opacity: 0.7;
+}
+.project a {
+    height:300px;
+    width: 100%;
 }
 .project img {
-    width: 100%; /* Set the desired width of the box */
-    height: 300px; /* Set the desired height of the box */
+    padding: 2px;
+    width: 100%; 
+    height: 300px; 
+}
+.technologies {
+    color: var(--gold)
 }
 .project-description {
-    margin-top:20px;
+    margin-inline:10px;
+    margin-top:10px;
+    text-align: center;
     line-height: 1.3;
     letter-spacing:0px;
+    font-size:1.5rem;
 }
 .project-button {
-    letter-spacing:0px;
-    background-color: var(--emerald);
+    letter-spacing:1.2px;
+    background: linear-gradient(135deg, var(--platinum)0%, var(--emerald)50%);
     padding: 5px 10px;
-    font-size:1rem;
-    font-family: 'cinzel decorative-bold', serif;
+    font-size:1.6rem;
+    font-weight:800;
+    font-family: 'garamond', serif;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     border-radius: 5px;
-    cursor:pointer;
+    cursor:none;
     transition: 250ms;
+    margin-inline:5px;
+    margin-top:40px;
+    color: var(--black);
 }
 .project-button:hover {
     filter:brightness(1.4);

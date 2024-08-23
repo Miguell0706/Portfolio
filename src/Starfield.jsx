@@ -60,18 +60,17 @@ const Starfield = () => {
         if (star.y < 0) star.y = canvas.height;
         if (star.y > canvas.height) star.y = 0;
 
-        // Update brightness based on cursor proximity
-        if (mousePosition.current.x !== null && mousePosition.current.y !== null) {
-          const distance = Math.sqrt(
-            (mousePosition.current.x - star.x) ** 2 + (mousePosition.current.y - star.y) ** 2
-          );
-          const maxDistance = 300; // Distance within which stars react to the cursor
-          if (distance < maxDistance) {
-            star.brightness = 1 - distance / maxDistance;
-          } else {
-            star.brightness = 0.15;
-          }
+        // Update brightness based on distance to cursor
+        const distance = Math.sqrt(
+          (mousePosition.current.x - star.x) ** 2 + (mousePosition.current.y - star.y) ** 2
+        );
+        const maxDistance = 300; // Distance within which stars react to the cursor
+        if (distance < maxDistance) {
+          star.brightness = 1 - distance / maxDistance;
+        } else {
+          star.brightness = 0.15;
         }
+      
       });
     };
 
@@ -101,7 +100,7 @@ const Starfield = () => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: "absolute", top: 0, left: 0, zIndex: -1 }}
+      className = "starfield-container"
     />
   );
 };
