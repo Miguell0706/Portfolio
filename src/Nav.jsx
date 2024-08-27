@@ -22,17 +22,10 @@ function Nav() {
     if (contactContainer) contactContainer.style.display = 'none';
   };
 
-  const openContact = () => {
-    if (contactContainer) contactContainer.style.display = "flex";
-    if (projectsContainer) projectsContainer.style.display = 'none';
-    if (aboutContainer) aboutContainer.style.display = 'none';
-  };
-
   return (
     <div className='nav-container'>
       <a href="#about" onClick={openAbout}>About</a>
       <a href="#projects" onClick={openProjects}>Projects</a>
-      <a href="#contact" onClick={openContact}>Contact</a>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 const Starfield = () => {
   const canvasRef = useRef(null);
-  const mousePosition = useRef({ x: null, y: null }); // Use ref to avoid re-renders
+  const mousePosition = useRef({ x: null, y: null });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,15 +13,15 @@ const Starfield = () => {
     const maxStarSize = 4;
 
     const initializeStars = () => {
-      stars.length = 0; // Clear existing stars
+      stars.length = 0;
       for (let i = 0; i < starCount; i++) {
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * maxStarSize,
           brightness: 0.15,
-          vx: (Math.random() - 0.5) * 0.3, // Horizontal velocity
-          vy: (Math.random() - 0.5) * 0.3, // Vertical velocity
+          vx: (Math.random() - 0.5) * 0.15,
+          vy: (Math.random() - 0.5) * 0.15,
         });
       }
     };
@@ -29,14 +29,13 @@ const Starfield = () => {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      starCount = window.innerWidth > 768 ? 200 : 100;
-      initializeStars(); // Reinitialize stars on resize
+      starCount = window.innerWidth > 768 ? 150 :75 ;
+      initializeStars();
     };
 
     window.addEventListener("resize", resizeCanvas);
-    resizeCanvas(); // Set initial size
+    resizeCanvas();
 
-    // Function to draw stars
     const drawStars = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       stars.forEach((star) => {
@@ -46,53 +45,42 @@ const Starfield = () => {
         ctx.fill();
       });
     };
-    
-    // Function to update star positions and brightness based on cursor
+
     const updateStars = () => {
       stars.forEach((star) => {
-        // Update star position based on velocity
         star.x += star.vx;
         star.y += star.vy;
 
-        // Handle edge wrapping
         if (star.x < 0) star.x = canvas.width;
         if (star.x > canvas.width) star.x = 0;
         if (star.y < 0) star.y = canvas.height;
         if (star.y > canvas.height) star.y = 0;
 
-        // Update brightness based on distance to cursor
         const distance = Math.sqrt(
           (mousePosition.current.x - star.x) ** 2 + (mousePosition.current.y - star.y) ** 2
         );
-        const maxDistance = 300; // Distance within which stars react to the cursor
+        const maxDistance = 300;
         if (distance < maxDistance) {
           star.brightness = 1 - distance / maxDistance;
         } else {
           star.brightness = 0.15;
         }
-      
       });
     };
 
-    // Animation loop
     const animate = () => {
-      updateStars(); // Update positions and brightness
-      drawStars(); // Draw updated stars
-      requestAnimationFrame(animate); // Schedule next frame
+      updateStars();
+      drawStars();
+      requestAnimationFrame(animate);
     };
 
-    // Handle mouse movement
-    const handleMouseMove = (e) => {
+    canvas.addEventListener("mousemove", (e) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
-    };
+    });
 
-    // Event listeners
-    canvas.addEventListener("mousemove", handleMouseMove);
     animate();
 
-    // Cleanup on component unmount
     return () => {
-      canvas.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
@@ -100,7 +88,7 @@ const Starfield = () => {
   return (
     <canvas
       ref={canvasRef}
-      className = "starfield-container"
+      style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}
     />
   );
 };

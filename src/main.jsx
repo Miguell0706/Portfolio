@@ -3,14 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./styles/index.css";
 import "./styles/about.css";
 import "./styles/projects.css";
-import "./styles/contact.css";
 import "./styles/nav.css";
 import About from "./About";
 import Projects from "./Projects";
-import Contact from "./Contact";
 import Nav from "./Nav";
+import CombinedStarfield from "./CombinedStartfield";
 import Starfield from "./Starfield";
-
 function App() {
   useEffect(() => {
     const cursor = document.querySelector(".cursor");
@@ -96,7 +94,7 @@ function App() {
       <Nav />
       <About />
       <Projects />
-      <Contact />
+
     </>
   );
 }
