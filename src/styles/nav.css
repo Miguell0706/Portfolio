@@ -7,7 +7,7 @@
     background-color: transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width:100%;
-    z-index:2;
+    z-index:0;
 }
 .nav-container a {
     text-decoration: none;
@@ -36,7 +36,7 @@
 
 @media screen and (min-width: 768px) {
     .nav-container {
-        position: absolute;
+        position: fixed;
         left: 20px;
         flex-direction: column;
         justify-content: center;

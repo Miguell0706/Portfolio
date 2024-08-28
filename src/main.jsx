@@ -7,7 +7,6 @@ import "./styles/nav.css";
 import About from "./About";
 import Projects from "./Projects";
 import Nav from "./Nav";
-import CombinedStarfield from "./CombinedStartfield";
 import Starfield from "./Starfield";
 function App() {
   useEffect(() => {

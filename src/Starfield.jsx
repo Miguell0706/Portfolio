@@ -88,7 +88,7 @@ const Starfield = () => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}
+      className="starfield-container"
     />
   );
 };
