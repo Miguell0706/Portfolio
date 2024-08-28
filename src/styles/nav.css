@@ -1,6 +1,6 @@
 .nav-container {
     position: relative;
-    display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
     padding: 10px;
@@ -16,6 +16,7 @@
     margin: 20px;
     font-size:24px;
     letter-spacing: -1px;
+    
 }
 .nav-container a::after {
     content: "";
@@ -36,6 +37,7 @@
 
 @media screen and (min-width: 768px) {
     .nav-container {
+        display:flex;
         position: fixed;
         left: 20px;
         flex-direction: column;
@@ -43,6 +45,7 @@
         align-items: center;
         width: 200px;
         height: 100vh;
+        animation: float 60s ease-in-out infinite;
         perspective: 1000px; /* Sets the perspective depth */
         perspective-origin: 50% 50%; /* Center of perspective */
     }
