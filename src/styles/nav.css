@@ -7,7 +7,6 @@
     background-color: transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width:100%;
-    z-index:0;
 }
 .nav-container a {
     text-decoration: none;
@@ -27,17 +26,10 @@
     left: 0; /* Start from the left */
     background-color: var(--gold); /* Color of the underline */
 }
-.nav-container a:hover {
-    filter:brightness(1.4);
-}
-.nav-container a:hover::after {
-    width: 100%; /* Expand the underline to full width on hover */
-    transition: width 0.2s ease-in-out;
-}
 
 @media screen and (min-width: 768px) {
     .nav-container {
-        display:flex;
+        display: flex;
         position: fixed;
         left: 20px;
         flex-direction: column;
@@ -45,23 +37,32 @@
         align-items: center;
         width: 200px;
         height: 100vh;
-        animation: float 60s ease-in-out infinite;
         perspective: 1000px; /* Sets the perspective depth */
         perspective-origin: 50% 50%; /* Center of perspective */
+        animation: float 40s infinite; /* Set the animation */
     }
-    
-    .nav-container a {
-        font-size: 36px;
+    .contact-links-container {
         position: relative;
-        margin-block:25px;
+        width: 300px;
+        height: 200px;
+        margin-top: 20px;
+        position: relative;
+        background: transparent;
+        z-index:30;
+      }
+    .nav-container a {
+        font-size: 42px;
+        position: relative;
+        margin-block: 25px;
         transform: rotateX(20deg) rotateY(30deg) rotateZ(-10deg); /* Apply 3D rotation */
         transform-origin: 50% 50% 0; /* Center point for rotation */
-        transition: transform 0.2s ease-in-out; /* Smooth transition on hover or interaction */
         text-shadow: 
             -2px 2px 4px rgba(0, 0, 0, 0.8), /* Basic shadow */
             -3px 2px 8px rgba(255, 255, 255, 0.3),
             -4px 2px 2px rgba(255, 255, 255, 0.2),
             -5px 2px 2px rgba(255, 255, 255, 0.1); /* Light shadow for 3D effect */
+        transition: transform 0.2s ease-in-out; /* Smooth transition on hover or interaction */
+
     }
     .nav-container a::after{
         display:none;
@@ -77,10 +78,11 @@
         box-shadow: 
             2px 2px 4px rgba(0, 0, 0, 0.8), /* Shadow for 3D effect */
             1px 1px 2px rgba(255, 255, 255, 0.3); /* Light shadow for depth */
-        transition: transform 0.2s ease-in-out; /* Smooth transition */
+        transition: 0.2s ease-in-out; /* Smooth transition */
     }
 
     .nav-container a:hover::before {
+        
         transform: translateX(100%); /* Move the line into view */
     }
     .nav-container a:hover {
