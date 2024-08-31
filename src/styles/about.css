@@ -1,11 +1,35 @@
 .about-container {
-    display: flex;
-  }
-  
-  .about-container h1 {
-    font-size: 3rem;
-    margin-bottom: 40px;
-    color: var(--gold);
-    text-shadow: 2px 2px 3.5px rgba(255, 255, 255, 0.7);
-    transform: perspective(400px) rotateX(20deg);
-  }
+  display: flex;
+  flex-direction: column; /* Arrange elements in a column */
+  align-items: center; /* Center-align items */
+  margin-bottom: 50px;
+  gap: 20px; /* Add some spacing between sections */
+}
+
+.about-container h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: var(--gold);
+  text-shadow: 2px 2px 3.5px rgba(255, 255, 255, 0.7);
+  transform: perspective(400px) rotateX(20deg);
+}
+
+.about-container p {
+  width: clamp(400px, 80%, 600px) !important;
+  font-family: 'garamond';
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--silver);
+  text-align: center; /* Center-align text for balance */
+}
+.technologies-orbs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color:white;
+  background-color: red;
+  width: clamp(400px, 80%, 600px)!important;
+  height:80px;
+}

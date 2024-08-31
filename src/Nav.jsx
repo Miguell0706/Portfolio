@@ -118,9 +118,13 @@ function Nav() {
 
   return (
     <div className='nav-container'>
+      <div className='name-container'>
+        <h1>Miguel Lozano</h1>
+        <p>FullStack Web Developer</p>
+      </div>
+      <div className="contact-links-container" ref={contactRef}></div>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <div className="contact-links-container" ref={contactRef}></div>
     </div>
   );
 }
