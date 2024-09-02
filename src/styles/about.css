@@ -1,9 +1,11 @@
 .about-container {
   display: flex;
+  padding:10px;
   flex-direction: column; /* Arrange elements in a column */
   align-items: center; /* Center-align items */
   margin-bottom: 50px;
   gap: 20px; /* Add some spacing between sections */
+  
 }
 
 .about-container h1 {
@@ -21,15 +23,10 @@
   font-weight: 700;
   line-height: 1.55;
   color: var(--silver);
-  text-align: center; /* Center-align text for balance */
+  text-align: left; /* Center-align text for balance */
 }
 .technologies-orbs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  color:white;
-  background-color: red;
-  width: clamp(400px, 80%, 600px)!important;
+  width: clamp(450px, 80%, 600px)!important;
   height:80px;
+
 }

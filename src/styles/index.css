@@ -97,6 +97,7 @@ body {
   align-items: center;
   position:relative;
   user-select: none;
+  margin: 0;
 }
 #root {
   width: 100%;

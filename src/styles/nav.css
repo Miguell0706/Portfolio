@@ -14,6 +14,9 @@
 .name-container {
     color:var(--platinum);
     margin-left:20px;
+    text-shadow: 
+    2px 2px 3.5px rgba(150, 150, 150, 0.7);
+    transform: perspective(40px) rotateX(2.4deg);
 }
 .name-container h1 {
     text-align: center;

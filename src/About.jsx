@@ -1,5 +1,5 @@
 import React from "react";
-import RotatingGlobes from "./RotatingGlobes"; // Adjust the import path as needed
+import AboutModels from "./AboutModels"; // Adjust the import path as needed
 
 function About() {
   return (
@@ -15,15 +15,14 @@ function About() {
         <br />
         Always exploring new technologies and techniques, the focus is on
         developing unique features like custom animations, 3D effects, and
-        real-time data integration. From building immersive weather dashboards
-        to interactive portfolio elements, the aim is to push the boundaries of
+        real-time data integration to push the boundaries of
         web development and create innovative solutions that stand out.
         <br />
         <br />
         All my projects are made with <span className='technologies'>vanilla css</span>, <span className='technologies'>html,</span> and either <span className='technologies'>javascript</span>,
         <span className='technologies'> python</span>, or a combination of both.
       </p>
-      <RotatingGlobes />
+      <AboutModels />
     </div>
   );
 }
