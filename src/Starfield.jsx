@@ -20,8 +20,8 @@ const Starfield = () => {
           y: Math.random() * canvas.height,
           size: Math.random() * maxStarSize,
           brightness: 0.15,
-          vx: (Math.random() - 0.5) * 0.15,
-          vy: (Math.random() - 0.5) * 0.15,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
         });
       }
     };

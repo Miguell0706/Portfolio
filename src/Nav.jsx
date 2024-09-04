@@ -34,29 +34,39 @@ function Nav() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
 
-    // Load GLTF Model
-    const loader = new GLTFLoader();
-    const clock = new THREE.Clock(); // for the rotation of the model - see animate
-    const linkedin = new THREE.Object3D();
+    function loadModel(url, xPosition) {
+      const loader = new GLTFLoader(); // Initialize loader inside the function
+      const modelGroup = new THREE.Object3D(); // Create a new group for each model
+    
+      loader.load(
+        url,
+        function (gltf) {
+          const box = new THREE.Box3().setFromObject(gltf.scene);
+          const c = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3());
+    
+          // Center the model
+          gltf.scene.position.set(-c.x, size.y / 2 - c.y, -c.z);
+    
+          modelGroup.add(gltf.scene); // Add the loaded model to the group
+          modelGroup.position.set(xPosition, 0, 0); // Set position based on parameter
+          scene.add(modelGroup); // Add to the scene
+        },
+        undefined,
+        (error) => {
+          console.error('An error happened while loading the GLB model:', error);
+        }
+      );
+    
+      return modelGroup; // Return the group if needed
+    }
+    const linkedin = loadModel("/models/linkedin.glb", -6);
+    const github = loadModel("/models/github.glb", 0);
+    const email = loadModel("/models/email.glb", 6);
+    email.scale.set(0.028,0.028,0.028)
+    linkedin.scale.set(2,2,2)
+    github.scale.set(2,2,2)
 
-    loader.load(
-      "/models/linkedin.glb",
-      function (gltf) {
-        const box = new THREE.Box3().setFromObject(gltf.scene);
-        const c = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        gltf.scene.position.set(-c.x, size.y / 2 - c.y, -c.z); // Center model
-
-        linkedin.add(gltf.scene);
-        linkedin.scale.set(2, 2, 2);
-        linkedin.position.set(-8, 0, 0);
-        scene.add(linkedin);
-      },
-      undefined,
-      (error) => {
-        console.error("An error happened while loading the GLB model:", error);
-      }
-    );
 
     // Mouse Move Event Listener
     function onMouseMove(event) {
@@ -75,11 +85,24 @@ function Nav() {
       raycaster.setFromCamera(mouse, camera);
 
       // Calculate objects intersecting the picking ray
-      const intersects = raycaster.intersectObject(linkedin, true); // `true` to check all descendants
-      if (intersects.length > 0) {
+      const intersectsLinkedIn = raycaster.intersectObject(linkedin, true); // `true` to check all descendants
+      const intersectsGitHub = raycaster.intersectObject(github, true); // Check GitHub model
+      const intersectsEmail = raycaster.intersectObject(email, true); // Check Email model
+
+      // Open LinkedIn link if clicked
+      if (intersectsLinkedIn.length > 0) {
         window.open("https://www.linkedin.com/in/miguel-lozano-aaa430287/", "_blank");
       }
-     
+      
+      // Open GitHub link if clicked
+      if (intersectsGitHub.length > 0) {
+        window.open("https://github.com/Miguell0706", "_blank");
+      }
+
+      // Open email client if email model is clicked
+      if (intersectsEmail.length > 0) {
+        window.location.href = "mailto:miguellozano3757@gmail.com";
+      }
     }
 
     // Add Event Listeners
@@ -90,7 +113,9 @@ function Nav() {
     function animate() {
       requestAnimationFrame(animate);
       if (linkedin) {
-        linkedin.rotation.y += 0.01;
+        linkedin.rotation.y += 0.015;
+        github.rotation.y += 0.015;
+        email.rotation.y += 0.015;
       }
    
       renderer.render(scene, camera);
@@ -145,10 +170,13 @@ function Nav() {
       <div className="name-container">
         <h1>Miguel Lozano</h1>
         <p>FullStack Web Developer</p>
+        <p>
+          <a className='email-link' href="mailto:miguellozano3757@gmail.com">miguellozano3757@gmail.com</a>
+        </p>
       </div>
       <div className="contact-links-container" ref={contactRef}></div>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
+      <a className='nav-link' href="#about">About</a>
+      <a className='nav-link' href="#projects">Projects</a>
     </div>
   );
 }

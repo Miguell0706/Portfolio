@@ -13,7 +13,7 @@ function About() {
         blend robust functionality with aesthetic appeal.
         <br />
         <br />
-        Always exploring new technologies and techniques, the focus is on
+        Always exploring new technologies and techniques, my focus is on
         developing unique features like custom animations, 3D effects, and
         real-time data integration to push the boundaries of
         web development and create innovative solutions that stand out.

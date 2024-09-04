@@ -30,7 +30,19 @@
     letter-spacing: -1px;
     font-weight: 600;
 }
-.nav-container a {
+.email-link {
+    text-decoration: none;
+    color: var(--platinum);
+    font-size: 1.2rem;
+    font-family: 'garamond', serif;
+    text-shadow: 2px 2px 3.5px rgba(150, 150, 150, 0.7);
+    pointer-events: auto;
+    
+}
+.email-link:hover {
+    color: var(--gold);
+}
+.nav-container > a {
     display:none;
     position: relative;
     z-index: 0;
@@ -42,7 +54,7 @@
     letter-spacing: -1px;
     
 }
-.nav-container a::after {
+.nav-container > a::after {
     content: "";
     position: absolute;
     width: 0; /* Start with no width (hidden) */
@@ -85,14 +97,14 @@
     .name-container p {
         margin-left:5px;
     } 
-    .nav-container a{
+    .nav-container > a{
         display:block;
         pointer-events: initial;
     }
     .contact-links-container{
         margin-left:50px;
     }
-    .nav-container a {
+    .nav-container > a {
         font-size: 42px;
         position: relative;
         margin-block: 25px;
@@ -106,10 +118,10 @@
         transition: transform 0.2s ease-in-out; /* Smooth transition on hover or interaction */
 
     }
-    .nav-container a::after{
+    .nav-container > a::after{
         display:none;
     }
-    .nav-container a::before {
+    .nav-container > a::before {
         content: "";
         position: absolute;
         width: 126%;
@@ -123,11 +135,11 @@
         transition: 0.2s ease-in-out; /* Smooth transition */
     }
 
-    .nav-container a:hover::before {
+    .nav-container > a:hover::before {
         
         transform: translateX(100%); /* Move the line into view */
     }
-    .nav-container a:hover {
+    .nav-container > a:hover {
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); /* Flatten rotation on hover */
     }
 }
