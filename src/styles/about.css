@@ -27,6 +27,6 @@
 }
 .technologies-orbs {
   width: clamp(450px, 80%, 600px)!important;
-  height:140px;
+  height:160px;
 
 }
