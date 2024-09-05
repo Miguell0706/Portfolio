@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
 
 function RotatingGlobes() {
   const contactRef = useRef(null);
@@ -18,44 +20,79 @@ function RotatingGlobes() {
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(contactRef.current.clientWidth, contactRef.current.clientHeight);
     contactRef.current.appendChild(renderer.domElement);
-    camera.position.set(0, 1, 3.1);
+    camera.position.set(0, -1, 4);
 
   
-    // Set up lighting
-    const ambientLight = new THREE.AmbientLight(0x333333);
-    scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new THREE.DirectionalLight(0xffffff);
+    directionalLight.position.set(1,0, 2);
     scene.add(directionalLight);
-    directionalLight.position.set(0,0,4);
 
     // Function to create a planet
-    const createOrb = (color, x, y) => {
-      const geometry = new THREE.SphereGeometry(1, 60, 60);
-      const material = new THREE.MeshStandardMaterial({ color });
-      const planet = new THREE.Mesh(geometry, material);
-      planet.position.set(x, y, 0);
-      scene.add(planet); // Add the orb directly to the scene here
-      return planet;
-    };
-
+     // Create a textured globe
+     const textureLoader = new THREE.TextureLoader();
+     const globeTexture = textureLoader.load("/images/django.png", (texture) => {
+  
+      texture.repeat.set(3,3); // Adjust the repeat values to control how many times the texture appears
+    
+      // Optionally, you can adjust the offset to change the starting point of the texture
+      texture.offset.set(-.1, -.75); // Adjust these values to shift the texture horizontally or vertically
+    });
+     const globeGeometry = new THREE.SphereGeometry(1, 32, 32); // Adjust size and detail as needed
+     const globeMaterial = new THREE.MeshStandardMaterial({ map: globeTexture });
+     const djangoOrb = new THREE.Mesh(globeGeometry, globeMaterial);
+     djangoOrb.position.set(0, .7, 0); // Set the position of the globe
+     scene.add(djangoOrb);
+    function createOrb(url) {
+      const loader = new GLTFLoader(); // Initialize loader inside the function
+      const modelGroup = new THREE.Object3D(); // Create a new group for each model
+    
+      loader.load(
+        url,
+        function (gltf) {
+          const box = new THREE.Box3().setFromObject(gltf.scene);
+          const c = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3());
+    
+          // Center the model
+          gltf.scene.position.set(-c.x, size.y / 2 - c.y, -c.z);
+    
+          modelGroup.add(gltf.scene); // Add the loaded model to the group
+          scene.add(modelGroup); // Add to the scene
+        },
+        undefined,
+        (error) => {
+          console.error('An error happened while loading the GLB model:', error);
+        }
+      );
+    
+      return modelGroup; // Return the group if needed
+    }
     // Create orbs
-    const cssOrb = createOrb(0x0077b5, -8, 1);
-    const pythonOrb = createOrb(0x333333, -4, 1);
-    const javascriptOrb = createOrb(0xf89f1b, 0, 1);
-    const djangoOrb = createOrb(0xdb4437, 4, 1);
-    const reactOrb = createOrb(0x00d1b2, 8, 1);
+    const cssOrb = createOrb("/models/css.glb", -8,);
+    cssOrb.scale.set(0.0095, 0.0095, 0.0095);
+    cssOrb.position.set(-5,-.4);
+    const pythonOrb = createOrb("/models/python.glb", -4);
+    pythonOrb.scale.set(0.03,.03, .03);
+    pythonOrb.position.set(-2.5, -3.5);
+    const javascriptOrb = createOrb("/models/js.glb", 0);
+    javascriptOrb.scale.set(1.3, 1.3, 1.3);
+    javascriptOrb.position.set(2.5, -3.5);
+    const reactOrb = createOrb("/models/react.glb", 8);
+    reactOrb.scale.set(.4, .4, .4);
+    reactOrb.position.set(5, 0, 0);
 
     // Animation loop
     function animate() {
       requestAnimationFrame(animate);
 
       // Rotate each orb
-      cssOrb.rotation.y += 0.01;
-      pythonOrb.rotation.y += 0.01;
-      javascriptOrb.rotation.y += 0.01;
-      djangoOrb.rotation.y += 0.01;
-      reactOrb.rotation.y += 0.01;
+      
+      cssOrb.rotation.y += 0.001;
+      pythonOrb.rotation.y += 0.001;
+      javascriptOrb.rotation.y += 0.001;
+      reactOrb.rotation.y += 0.001;
+      djangoOrb.rotation.y += 0.001;
 
       renderer.render(scene, camera);
     }
