@@ -30,6 +30,7 @@
     margin-bottom: 40px;
     color: var(--gold);
     text-align: center;
+    font-family: 'cinzel decorative-bold', serif;
     text-shadow: 
         2px 2px 3.5px rgba(255, 255, 255, 0.7);
     transform: perspective(400px) rotateX(20deg);
