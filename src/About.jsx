@@ -3,7 +3,7 @@ import AboutModels from "./AboutModels"; // Adjust the import path as needed
 
 function About() {
   return (
-    <div className="about-container">
+    <div id="about" className="about-container">
       <h1>About</h1>
       <p>
         A passionate developer that has become a dedicated lifelong learner of
