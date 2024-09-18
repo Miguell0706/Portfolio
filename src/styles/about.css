@@ -11,14 +11,14 @@
 .about-container h1 {
   font-size: 3rem;
   margin-bottom: 40px;
-  font-family: 'trajan pro bold',serif;
   color: var(--gold);
+  font-family: 'trajan pro bold', serif;
   text-shadow: 2px 2px 3.5px rgba(255, 255, 255, 0.7);
   transform: perspective(400px) rotateX(20deg);
 }
 
 .about-container p {
-  width: clamp(400px, 80%, 600px) !important;
+  width: clamp(300px, 80%, 600px) !important;
   font-family: 'garamond';
   font-size: 1.5rem;
   font-weight: 700;
@@ -29,5 +29,4 @@
 .technologies-orbs {
   width: clamp(450px, 80%, 600px)!important;
   height:160px;
-
 }
